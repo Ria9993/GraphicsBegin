@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{f13099a5-56e5-4a80-a039-90eabefb3969}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Wnd">
+      <UniqueIdentifier>{9ab14c23-e110-43c5-9a1f-cf552d0bd250}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Core">
+      <UniqueIdentifier>{d0b247a8-8819-44a7-b364-520c234c4deb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphics">
+      <UniqueIdentifier>{f67c50f0-f9ad-4c2c-acb2-1aa9af92d099}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Wnd\Wnd.cpp">
+      <Filter>src\Wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PCH.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Wnd\WndFrame.cpp">
+      <Filter>src\Wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\DX11Context.cpp">
+      <Filter>src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Log.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Wnd\Wnd.h">
+      <Filter>src\Wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PCH.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Wnd\WndFrame.h">
+      <Filter>src\Wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\DX11Context.h">
+      <Filter>src\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\DX11Config.h">
+      <Filter>src\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Type.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Log.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Singleton.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
