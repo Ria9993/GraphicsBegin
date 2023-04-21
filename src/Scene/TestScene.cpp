@@ -41,13 +41,15 @@ float4 PS(PS_In ps) : SV_TARGET
 TestScene::TestScene()
 	: mVertexBuffer(nullptr)
 	, mShader(nullptr)
+	, mIL(nullptr)
 {
 }
 
 TestScene::~TestScene()
 {
-	SAFE_DELETE(mVertexBuffer);
+	SAFE_DELETE(mIL);
 	SAFE_DELETE(mShader);
+	SAFE_DELETE(mVertexBuffer);
 }
 
 bool TestScene::Init()

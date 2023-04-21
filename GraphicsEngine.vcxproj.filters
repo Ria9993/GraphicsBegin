@@ -31,9 +31,6 @@
     <ClCompile Include="src\Wnd\WndFrame.cpp">
       <Filter>src\Wnd</Filter>
     </ClCompile>
-    <ClCompile Include="src\Graphics\DX11Context.cpp">
-      <Filter>src\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="src\Core\Log.cpp">
       <Filter>src\Core</Filter>
     </ClCompile>
@@ -41,6 +38,7 @@
     <ClCompile Include="src\Scene\TestScene.cpp" />
     <ClCompile Include="src\Graphics\DX11Shader.cpp" />
     <ClCompile Include="src\Graphics\DX11InputLayout.cpp" />
+    <ClCompile Include="src\Graphics\DX11Context1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Wnd\Wnd.h">
@@ -51,9 +49,6 @@
     </ClInclude>
     <ClInclude Include="src\Wnd\WndFrame.h">
       <Filter>src\Wnd</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graphics\DX11Context.h">
-      <Filter>src\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\Graphics\DX11Config.h">
       <Filter>src\Graphics</Filter>
@@ -73,5 +68,6 @@
     <ClInclude Include="src\Core\LinerMath.h" />
     <ClInclude Include="src\Graphics\DX11Shader.h" />
     <ClInclude Include="src\Graphics\DX11InputLayout.h" />
+    <ClInclude Include="src\Graphics\Dx11Context1.h" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #pragma once
 #include <Wnd/Wnd.h>
-#include <Graphics/DX11Context.h>
+#include <Graphics/DX11Context1.h>
 
 class WndFrame : public Wnd
 {
@@ -13,7 +13,7 @@ public:
 
 	int ExecFrame(Scene* scene);
 
-	std::shared_ptr<DX11Context> mGraphics;
+	std::shared_ptr<DX11Context1> mGraphics;
 
 	LRESULT LocalWndProc(UINT msg, WPARAM wp, LPARAM lp) override;
 };

@@ -19,7 +19,7 @@ void WndFrame::OnCreateEvent()
 	int w = rc.right - rc.left;
 	int h = rc.bottom - rc.top;
 
-	mGraphics = std::make_shared<DX11Context>(w, h, *this);
+	mGraphics = std::make_shared<DX11Context1>(w, h, *this);
 }
 
 void WndFrame::OnResizeEvent(int w, int h)
