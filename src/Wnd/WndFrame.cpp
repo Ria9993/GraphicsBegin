@@ -1,5 +1,6 @@
 #include <PCH.h>
 #include <Wnd/WndFrame.h>
+#include <Scene/Scene.h>
 
 WndFrame::WndFrame(Wnd* parent, int w, int h)
 	: Wnd(parent, 0, 0, w, h)
@@ -27,8 +28,14 @@ void WndFrame::OnResizeEvent(int w, int h)
 	//TODO : we must to recreate swapchain
 }
 
-int WndFrame::ExecFrame(void* data)
+int WndFrame::ExecFrame(Scene* scene)
 {
+	if (scene)
+	{
+		if (!scene->Init())
+			MessageBox(NULL, "failed to init scene\n", "error", MB_OK);
+	}
+
 	//TODO : data = Scene / Renderer
 	MSG msg{};
 	while (msg.message != WM_QUIT)
@@ -37,13 +44,26 @@ int WndFrame::ExecFrame(void* data)
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
+			if (msg.message == WM_KEYDOWN && msg.wParam == VK_ESCAPE)
+			{
+				PostQuitMessage(0);
+			}
 		}
 		else {
 			//TODO : data->rendering
 			if (mGraphics) {
 				//printf("context alives\n");
-				mGraphics->ClearBuffer(1.0f, 0.1f, 0.2f, 1.0f);
-				//render
+				//static float tmp = 0.0f;
+				//tmp += 0.0001f;
+				//if (tmp >= 1.0f)
+				//	tmp = 0.0f;
+				//mGraphics->ClearBuffer(tmp, 0.1f, 0.2f, 0.1f);
+				////render
+				if (scene) {
+					scene->Update(0.0f);
+					scene->Render();
+				}
+
 
 				mGraphics->SwapBuffer();
 			}

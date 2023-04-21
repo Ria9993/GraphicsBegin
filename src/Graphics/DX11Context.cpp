@@ -1,11 +1,17 @@
 #include <PCH.h>
 #include <Graphics/DX11Context.h>
 
+DX11Context* DX11Context::g_Context = nullptr;
+
 DX11Context::DX11Context(int cx, int cy, HWND hwnd)
 	: Context(cx, cy, hwnd)
 {
+	if (!g_Context) {
+		g_Context = this;
+	}
 	CreateDevice();
 	CreateSwapChain();
+	CreateState();
 }
 
 DX11Context::~DX11Context()
@@ -43,7 +49,7 @@ void DX11Context::CreateDevice()
 		&outFeature,
 		&context
 	);
-	LOG_HR(hr);
+	HR(hr);
 
 	if (outFeature == D3D_FEATURE_LEVEL_11_1)
 		printf("D3D Feature 11.1 supported \n");
@@ -58,13 +64,14 @@ void DX11Context::CreateSwapChain()
 {
 	//Device
 	comptr<IDXGIDevice1> dxgiDevice;
-	LOG_HR(mDevice.As(&dxgiDevice));
-	//Adaptor
-	comptr<IDXGIAdapter> adaptor;
-	LOG_HR(dxgiDevice->GetAdapter(adaptor.GetAddressOf()));
+	HR(mDevice.As(&dxgiDevice));
+	//adapter
+	comptr<IDXGIAdapter> adapter;
+	HR(dxgiDevice->GetAdapter(adapter.GetAddressOf()));
 
+	// why we use factory???????????
 	comptr<IDXGIFactory4> factory{};
-	LOG_HR(adaptor->GetParent(__uuidof(IDXGIFactory1), (void**)factory.GetAddressOf()));
+	HR(adapter->GetParent(__uuidof(IDXGIFactory1), (void**)factory.GetAddressOf()));
 
 	DXGI_SWAP_CHAIN_DESC1 sd{};
 	sd.Width = cx;
@@ -78,24 +85,37 @@ void DX11Context::CreateSwapChain()
 
 	factory->CreateSwapChainForHwnd(
 		mDevice.Get(), hwnd, &sd, nullptr, nullptr, mSwapChain.ReleaseAndGetAddressOf());
-	//mRTV->Release();
-	//mRTV = nullptr;
-	
+
 	//Back buffer
-	comptr<ID3D11Texture2D> backBuffer;
-	LOG_HR(mSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), &backBuffer));
-	LOG_HR(mDevice->CreateRenderTargetView(backBuffer.Get(), nullptr, &mRTV));
+	ID3D11Texture2D* backBuffer;
+	HR(mSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&backBuffer));
+	HR(mDevice->CreateRenderTargetView(backBuffer, nullptr, &mRTV));
+	SAFE_RELEASE(backBuffer);
 
 	//TODO: Depth stencil
 
 	D3D11_VIEWPORT vp{};
-	vp.TopLeftX = 0.f;
-	vp.TopLeftY = 0.f;
-	vp.Width = cx;
-	vp.Height = cy;
+	vp.TopLeftX = 0.0f;
+	vp.TopLeftY = 0.0f;
+	vp.Width = (float)cx;
+	vp.Height = (float)cy;
+	vp.MinDepth = 0.0f;
+	vp.MaxDepth = 1.0f;
 	mContext->RSSetViewports(1, &vp);
 	mContext->OMSetRenderTargets(1, &mRTV, nullptr);
 	
+
+}
+
+void DX11Context::CreateState()
+{
+	D3D11_RASTERIZER_DESC rd{};
+	rd.CullMode = D3D11_CULL_FRONT;
+	rd.FillMode = D3D11_FILL_SOLID;
+	rd.FrontCounterClockwise = false;
+	rd.DepthClipEnable = true;
+
+	mDevice->CreateRasterizerState(&rd, &mState);
 }
 
 void DX11Context::ClearBuffer(float r, float g, float b, float a)

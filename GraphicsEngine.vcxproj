@@ -43,14 +43,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -85,10 +85,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)\src\;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)\bin\</OutDir>
+    <IntDir>$(SolutionDir)\bin\temp\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir)\src\;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)\bin\</OutDir>
+    <IntDir>$(SolutionDir)\bin\temp\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -132,6 +136,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>PCH.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,6 +153,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>PCH.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -158,7 +164,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Log.cpp" />
+    <ClCompile Include="src\Graphics\DX11Buffer.cpp" />
     <ClCompile Include="src\Graphics\DX11Context.cpp" />
+    <ClCompile Include="src\Graphics\DX11InputLayout.cpp" />
+    <ClCompile Include="src\Graphics\DX11Shader.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\PCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -170,16 +179,23 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PCH.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PCH.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="src\Scene\TestScene.cpp" />
     <ClCompile Include="src\Wnd\Wnd.cpp" />
     <ClCompile Include="src\Wnd\WndFrame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core\LinerMath.h" />
     <ClInclude Include="src\Core\Log.h" />
     <ClInclude Include="src\Core\Singleton.h" />
     <ClInclude Include="src\Core\Type.h" />
+    <ClInclude Include="src\Graphics\DX11Buffer.h" />
     <ClInclude Include="src\Graphics\DX11Config.h" />
     <ClInclude Include="src\Graphics\DX11Context.h" />
+    <ClInclude Include="src\Graphics\DX11InputLayout.h" />
+    <ClInclude Include="src\Graphics\DX11Shader.h" />
     <ClInclude Include="src\PCH.h" />
+    <ClInclude Include="src\Scene\Scene.h" />
+    <ClInclude Include="src\Scene\TestScene.h" />
     <ClInclude Include="src\Wnd\Wnd.h" />
     <ClInclude Include="src\Wnd\WndFrame.h" />
   </ItemGroup>

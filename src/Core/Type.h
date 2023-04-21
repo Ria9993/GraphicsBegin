@@ -8,3 +8,11 @@ typedef HWND__* HWND;
 typedef UINT			uint;
 typedef unsigned char	byte;
 typedef unsigned char	uint8;
+
+//Forward Declare D3D
+class VertexBuffer;
+class Shader;
+class InputLayout;
+
+//User type
+class Scene;

@@ -37,6 +37,10 @@
     <ClCompile Include="src\Core\Log.cpp">
       <Filter>src\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\Graphics\DX11Buffer.cpp" />
+    <ClCompile Include="src\Scene\TestScene.cpp" />
+    <ClCompile Include="src\Graphics\DX11Shader.cpp" />
+    <ClCompile Include="src\Graphics\DX11InputLayout.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Wnd\Wnd.h">
@@ -63,5 +67,11 @@
     <ClInclude Include="src\Core\Singleton.h">
       <Filter>src\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Graphics\DX11Buffer.h" />
+    <ClInclude Include="src\Scene\Scene.h" />
+    <ClInclude Include="src\Scene\TestScene.h" />
+    <ClInclude Include="src\Core\LinerMath.h" />
+    <ClInclude Include="src\Graphics\DX11Shader.h" />
+    <ClInclude Include="src\Graphics\DX11InputLayout.h" />
   </ItemGroup>
 </Project>

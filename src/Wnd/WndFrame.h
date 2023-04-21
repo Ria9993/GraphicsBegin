@@ -11,7 +11,7 @@ public:
 	void OnCreateEvent() override;
 	void OnResizeEvent(int w, int h) override;
 
-	int ExecFrame(void* data);
+	int ExecFrame(Scene* scene);
 
 	std::shared_ptr<DX11Context> mGraphics;
 

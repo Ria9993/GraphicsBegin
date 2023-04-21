@@ -2,6 +2,9 @@
 
 #include <Graphics/DX11Config.h>
 
+#define gContext DX11Context::g_Context->mContext.Get()
+#define gDevice DX11Context::g_Context->mDevice.Get()
+
 class Context {
 public:
 	Context(int cx, int cy, HWND hwnd) 
@@ -19,6 +22,7 @@ public:
 
 	void CreateDevice();
 	void CreateSwapChain();
+	void CreateState();
 
 	void ClearBuffer(float r, float g, float b, float a);
 	void SwapBuffer();
@@ -31,4 +35,10 @@ public:
 	comptr<IDXGISwapChain1>			mSwapChain;
 	//render target view
 	ID3D11RenderTargetView*			mRTV = nullptr;
+
+
+	//create state
+	ID3D11RasterizerState*			mState;
+
+	static DX11Context* g_Context;
 };
