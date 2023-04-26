@@ -46,7 +46,7 @@ void DX11Context1::CreateDevice()
 	ID3D11Device*			localDevice = nullptr;
 	ID3D11DeviceContext*	localContext = nullptr;
 
-	hr = D3D11CreateDevice(
+	HR(D3D11CreateDevice(
 		nullptr,
 		driverType,
 		nullptr,
@@ -56,7 +56,7 @@ void DX11Context1::CreateDevice()
 		D3D11_SDK_VERSION,
 		&localDevice,
 		&outputFeatureLevel,
-		&localContext);
+		&localContext));
 
 	//11.0 to 11.1
 	HR(localDevice->QueryInterface(IID_PPV_ARGS(&mDevice)));
@@ -103,6 +103,7 @@ void DX11Context1::CreateSwapChain()
 	sd.BufferUsage        = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	sd.BufferCount        = mIsFlipModel ? 2 : 1;
 	sd.SwapEffect         = mIsFlipModel ? DXGI_SWAP_EFFECT_FLIP_DISCARD : DXGI_SWAP_EFFECT_DISCARD;
+	//sd.SwapEffect = mIsFlipModel ? DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL : DXGI_SWAP_EFFECT_SEQUENTIAL;
 	sd.Flags              = 0;
 	sd.Scaling            = DXGI_SCALING_STRETCH;
 	sd.AlphaMode          = DXGI_ALPHA_MODE_UNSPECIFIED;

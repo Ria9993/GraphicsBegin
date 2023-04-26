@@ -166,8 +166,8 @@
     <ClCompile Include="src\Core\Log.cpp" />
     <ClCompile Include="src\Graphics\DX11Buffer.cpp" />
     <ClCompile Include="src\Graphics\DX11Context1.cpp" />
-    <ClCompile Include="src\Graphics\DX11InputLayout.cpp" />
     <ClCompile Include="src\Graphics\DX11Shader.cpp" />
+    <ClCompile Include="src\Graphics\VertexFormat.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\PCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -191,8 +191,8 @@
     <ClInclude Include="src\Graphics\Dx11Context1.h" />
     <ClInclude Include="src\Graphics\DX11Buffer.h" />
     <ClInclude Include="src\Graphics\DX11Config.h" />
-    <ClInclude Include="src\Graphics\DX11InputLayout.h" />
     <ClInclude Include="src\Graphics\DX11Shader.h" />
+    <ClInclude Include="src\Graphics\VertexFormat.h" />
     <ClInclude Include="src\PCH.h" />
     <ClInclude Include="src\Scene\Scene.h" />
     <ClInclude Include="src\Scene\TestScene.h" />

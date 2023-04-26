@@ -20,6 +20,7 @@ public:
 	virtual void Update(float dt);
 
 	VertexBuffer*	mVertexBuffer;
-	Shader*			mShader;
-	InputLayout*	mIL;
+
+	Shader*			mPS;
+	Shader*			mVS;
 };

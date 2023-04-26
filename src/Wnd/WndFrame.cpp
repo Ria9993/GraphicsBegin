@@ -26,6 +26,8 @@ void WndFrame::OnResizeEvent(int w, int h)
 {
 	printf("WM_RESIZE %d %d\n", w, h);
 	//TODO : we must to recreate swapchain
+	if (mGraphics)
+		mGraphics->CreateRenderTargetView(w, h);
 }
 
 int WndFrame::ExecFrame(Scene* scene)
@@ -57,7 +59,7 @@ int WndFrame::ExecFrame(Scene* scene)
 				//tmp += 0.0001f;
 				//if (tmp >= 1.0f)
 				//	tmp = 0.0f;
-				//mGraphics->ClearBuffer(tmp, 0.1f, 0.2f, 0.1f);
+				mGraphics->ClearBuffer(0.0f, 0.1f, 0.2f, 0.1f);
 				////render
 				if (scene) {
 					scene->Update(0.0f);

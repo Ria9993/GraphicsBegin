@@ -11,7 +11,7 @@ typedef unsigned char	uint8;
 
 //Forward Declare D3D
 class VertexBuffer;
-class Shader;
+class VertexShader;
 class InputLayout;
 
 //User type

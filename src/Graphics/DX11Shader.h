@@ -2,23 +2,60 @@
 
 #include <Graphics/DX11Context1.h>
 
-#define VS_ENTRY "VS"
-#define PS_ENTRY "PS"
-#define VS_VERSION "vs_5_0"
-#define PS_VERSION "ps_5_0"
+enum class ShaderType : uint
+{
+	Vertex,
+	Pixel,
+	Hull,
+	Geometry
+};
+
+struct ShaderDesc
+{
+	ShaderType type;
+	LPCSTR code;
+	LPCSTR file;
+	D3D11_INPUT_ELEMENT_DESC* elements;
+	uint nElements;
+};
 
 class Shader {
 public:
 	Shader();
-	virtual ~Shader();
+	~Shader();
 
-	void CreateFromCode(LPCSTR vs, LPCSTR ps);
+	virtual void Create(ID3DBlob* blob) = 0;
+	virtual void BindPipeline() = 0;
+};
 
-	static void Compile(LPCSTR code, LPCSTR entry, LPCSTR version, ID3DBlob** blob);
+class VertexShader : public Shader 
+{
+public:
+	VertexShader();
+	virtual ~VertexShader();
 
-	void Bind();
+	void Create(ID3DBlob* blob) override;
+	void BindPipeline();
 
 	ID3D11VertexShader* mVS;
-	ID3D11PixelShader*	mPS;
-	ID3DBlob*			mVSBlob;
+	ID3D11InputLayout*	mInputlayout;
+};
+
+class PixelShader : public Shader
+{
+public:
+	PixelShader();
+	virtual ~PixelShader();
+
+	void Create(ID3DBlob* blob) override;
+	void BindPipeline();
+
+	ID3D11PixelShader* mPS;
+};
+
+class ShaderCache {
+public:
+	static Shader* CreateFromCode(const ShaderDesc& desc);
+
+	static std::vector<std::shared_ptr<Shader>> mCache;
 };
